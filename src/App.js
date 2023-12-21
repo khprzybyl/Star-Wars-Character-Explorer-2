@@ -1,5 +1,12 @@
-const App = () => {
-  return <div>Starwars Character Explorer</div>;
-};
+import { Table } from './components/Table';
 
-export default App;
+export const App = () => {
+  return (
+    <div>
+      <h1 className="text-3xl font-bold text-black">
+        Starwars Characters Explorer
+      </h1>
+      <Table />
+    </div>
+  );
+};
