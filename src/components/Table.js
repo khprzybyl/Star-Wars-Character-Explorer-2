@@ -8,8 +8,7 @@ export const Table = () => {
   //   console.log('ES6 modules are not supported natively')
   // }
   return (
-    <div>
-      Table
+    <div className="bg-blue-300 rounded-3xl">
       <ColumnHeader />
       <UserList />
     </div>
