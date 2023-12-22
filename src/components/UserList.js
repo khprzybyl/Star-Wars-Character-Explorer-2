@@ -1,4 +1,4 @@
-import { User } from './User.js';
+import { User } from './User.js'
 
 export const UserList = () => {
   return (
@@ -6,5 +6,5 @@ export const UserList = () => {
       USER LIST map users
       <User />
     </div>
-  );
-};
+  )
+}
