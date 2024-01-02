@@ -1,16 +1,13 @@
-export const User = () => {
+import React from 'react'
+
+export const User = ({ user }) => {
   return (
-    <div className="p-6">
-      <ul className="flex gap-6">
-        <li>name</li>
-        <li>height</li>
-        <li>mass</li>
-        <li>edited</li>
-        <li>created</li>
-        <li>
-          <button>planet detail</button>
-        </li>
-      </ul>
-    </div>
+    <ul className="flex justify-between gap-10 px-6 py-2">
+      <li className="name">{user?.name}</li>
+      <li>{user?.height}</li>
+      <li>{user?.mass}</li>
+      <li>{user?.created}</li>
+      <li>{user?.edited}</li>
+    </ul>
   )
 }
