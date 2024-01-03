@@ -1,23 +1,26 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table } from './components/Table'
 import { UserList } from './components/UserList'
+import { Pagination } from './components/Pagination.js'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 // const ApplicationContext = createContext()
+const defaultValue = {
+  page: 1,
+}
 
 const queryClient = new QueryClient()
 
+export const ApplicationContext = React.createContext(defaultValue)
+
 export const App = () => {
   const [theme, setTheme] = useState(null)
+  const [queryParams, setQueryParams] = useState({
+    page: defaultValue.page,
+  })
 
-  // useEffect(() => {
-  //   if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  //     setTheme('dark');
-  //   } else {
-  //     setTheme('light');
-  //   }
-  // }, []);
+  console.log('queryParams aa', queryParams)
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -31,24 +34,34 @@ export const App = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
+  const handlePageChange = (newPage) => {
+    setQueryParams({
+      ...queryParams,
+      page: newPage,
+    })
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
-      <div className=" h-screen bg-blue-200 flex justify-center items-center flex-col gap-6 dark:bg-black">
-        <h1 className="text-3xl font-bold underline">
-          Starwars Characters Explorer
-        </h1>
-        <button
-          className="bg-green-500 p-4 rounded-3xl"
-          onClick={handleToggleTheme}
-        >
-          {' '}
-          Dark Mode
-        </button>
-        <Table>
-          <UserList />
-        </Table>
-      </div>
-      <ReactQueryDevtools initialIsOpen />
+      <ApplicationContext.Provider value={{ queryParams, handlePageChange }}>
+        <div className=" h-auto flex bg-blue-200 justify-center items-center flex-col gap-6 dark:bg-black py-20">
+          <h1 className="text-3xl font-bold underline">
+            Starwars Characters Explorer
+          </h1>
+          <button
+            className="bg-green-500 p-4 rounded-3xl"
+            onClick={handleToggleTheme}
+          >
+            {' '}
+            Dark Mode
+          </button>
+          <Table>
+            <UserList />
+          </Table>
+          <Pagination />
+        </div>
+        <ReactQueryDevtools initialIsOpen />
+      </ApplicationContext.Provider>
     </QueryClientProvider>
   )
 }

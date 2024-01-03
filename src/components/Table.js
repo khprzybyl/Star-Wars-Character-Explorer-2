@@ -1,16 +1,10 @@
 import { ColumnHeader } from './ColumnHeader'
-import { UserList } from './UserList.js'
 
-export const Table = () => {
-  // if (typeof module !== 'undefined' && module.type === 'module') {
-  //   console.log('ES6 modules are supported natively')
-  // } else {
-  //   console.log('ES6 modules are not supported natively')
-  // }
+export const Table = ({ children }) => {
   return (
     <div className="bg-blue-300 rounded-3xl">
       <ColumnHeader />
-      <UserList />
+      {children}
     </div>
   )
 }

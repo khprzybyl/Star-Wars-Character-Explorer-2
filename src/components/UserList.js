@@ -11,8 +11,8 @@ export const UserList = () => {
   console.log('data:', data)
   return (
     <div>
-      {data?.results.map((user, index) => {
-        return <User key={index} user={user} />
+      {data?.results.map((user) => {
+        return <User key={user.name} user={user} />
       })}
     </div>
   )
