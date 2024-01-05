@@ -6,6 +6,7 @@ export const ColumnHeader = () => {
       <li>mass</li>
       <li>edited</li>
       <li>created</li>
+      <li>planet</li>
     </ul>
   )
 }
