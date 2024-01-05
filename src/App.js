@@ -5,7 +5,6 @@ import { Pagination } from './components/Pagination.js'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
-// const ApplicationContext = createContext()
 const defaultValue = {
   page: 1,
 }
@@ -19,6 +18,27 @@ export const App = () => {
   const [queryParams, setQueryParams] = useState({
     page: defaultValue.page,
   })
+
+  useEffect(() => {
+    // Update the URL hash when the page changes
+    window.location.hash = `page-${queryParams.page}`
+  }, [queryParams.page])
+
+  // Function to handle hash change events
+  const handleHashChange = () => {
+    const page = window.location.hash.replace('#page-', '')
+    if (!isNaN(page)) {
+      setQueryParams({ ...queryParams, page: Number(page) })
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('hashchange', handleHashChange, false)
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange, false)
+    }
+  }, [])
 
   console.log('queryParams aa', queryParams)
 
