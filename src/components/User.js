@@ -13,13 +13,17 @@ export const User = ({ user, homeworldUrls }) => {
   const formattedEditedDate = formatDate(user.edited)
 
   return (
-    <ul className="flex justify-between gap-10 px-6 py-2">
-      <li className="name">{user?.name}</li>
-      <li>{user?.height}</li>
-      <li>{user?.mass}</li>
-      <li>{formattedCreatedDate}</li>
-      <li>{formattedEditedDate}</li>
-      <li>{userHomeworld}</li>
+    <ul className="grid grid-cols-7 gap-6">
+      <li className="col-span-2 p-4 font-bold ml-4">{user?.name}</li>
+      <li className="flex justify-center items-center p-4">{user?.height}</li>
+      <li className="flex justify-center items-center p-4">{user?.mass}</li>
+      <li className="flex justify-center items-center p-4">
+        {formattedCreatedDate}
+      </li>
+      <li className="flex justify-center items-center p-4">
+        {formattedEditedDate}
+      </li>
+      <li className="flex justify-center items-center p-4">{userHomeworld}</li>
     </ul>
   )
 }

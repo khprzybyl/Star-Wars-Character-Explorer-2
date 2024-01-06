@@ -1,12 +1,12 @@
-export const ColumnHeader = () => {
+export const ColumnHeader = ({ columnName, isWide }) => {
+  const widthClass = isWide
+    ? 'col-span-2 justify-start ml-4'
+    : 'col-span-1 justify-center'
   return (
-    <ul className="flex justify-between gap-10 bg-blue-500 rounded-t-3xl p-6">
-      <li>name</li>
-      <li>height</li>
-      <li>mass</li>
-      <li>edited</li>
-      <li>created</li>
-      <li>planet</li>
-    </ul>
+    <div
+      className={`text-gray-100 text-sm flex font-bold items-center p-4 ${widthClass}`}
+    >
+      {columnName}
+    </div>
   )
 }

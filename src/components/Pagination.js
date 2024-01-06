@@ -27,7 +27,7 @@ export const Pagination = () => {
       >
         Previous
       </button>
-      <ul className="flex gap-5 items-center">
+      <ul className="flex gap-5 items-center dark:text-slate-100">
         <li>{prevPage(page)}</li>
         <li className="font-extrabold text-xl">{page}</li>
         <li>{nextPage(page, totalPageCount)}</li>

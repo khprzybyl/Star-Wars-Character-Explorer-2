@@ -20,11 +20,9 @@ export const App = () => {
   })
 
   useEffect(() => {
-    // Update the URL hash when the page changes
     window.location.hash = `page-${queryParams.page}`
   }, [queryParams.page])
 
-  // Function to handle hash change events
   const handleHashChange = () => {
     const page = window.location.hash.replace('#page-', '')
     if (!isNaN(page)) {
@@ -39,8 +37,6 @@ export const App = () => {
       window.removeEventListener('hashchange', handleHashChange, false)
     }
   }, [])
-
-  console.log('queryParams aa', queryParams)
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -64,8 +60,8 @@ export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ApplicationContext.Provider value={{ queryParams, handlePageChange }}>
-        <div className=" h-auto flex bg-blue-200 justify-center items-center flex-col gap-6 dark:bg-black py-20">
-          <h1 className="text-3xl font-bold underline">
+        <div className=" h-auto flex bg-slate-300 justify-center items-center flex-col gap-6 dark:bg-black py-20">
+          <h1 className="text-3xl dark:text-yellow-300 font-bold">
             Starwars Characters Explorer
           </h1>
           <button
