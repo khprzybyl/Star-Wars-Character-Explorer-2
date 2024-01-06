@@ -27,7 +27,7 @@ export const Popup = ({ planet, togglePopup }) => {
           ariaLabel="Go back button"
           onClick={togglePopup}
           buttonText="Go back"
-        ></Button>
+        />
       </div>
     </div>
   )

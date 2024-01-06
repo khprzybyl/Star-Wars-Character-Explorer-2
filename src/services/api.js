@@ -1,9 +1,12 @@
+import qs from 'qs'
 import axios from 'axios'
 
-export const fetchPeople = async (page) => {
+export const fetchPeople = async (queryParams) => {
+  const queryString = qs.stringify(queryParams, { skipNulls: true })
+  console.log('queryString', queryString)
   try {
     const response = await axios.get(
-      `https://swapi.dev/api/people/?page=${page}`
+      `${process.env.REACT_APP_API_URL}/people?${queryString}`
     )
     return response.data
   } catch (error) {

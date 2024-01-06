@@ -1,11 +1,11 @@
-import { ApplicationContext } from '../App.js'
+import { ApplicationContext } from '../hooks/useAppContextUtils.js'
 import { useContext } from 'react'
 import { usePeopleQuery } from '../hooks/usePeopleQuery.js'
 import { nextPage, prevPage } from '../utils/pagination'
+import { Button } from './Button.js'
 
 export const Pagination = () => {
-  let { queryParams, handlePageChange } = useContext(ApplicationContext)
-  let { page } = queryParams
+  let { page, handlePageChange } = useContext(ApplicationContext)
 
   const { data } = usePeopleQuery()
 
@@ -20,25 +20,25 @@ export const Pagination = () => {
 
   return (
     <div className="flex gap-5  items-center">
-      <button
-        className="bg-white px-6 py-2 rounded-xl"
+      <Button
         onClick={handlePageChangePrevious}
         disabled={page === 1}
-      >
-        Previous
-      </button>
+        buttonText="Previous"
+        ariaLabel="Move to previous page"
+      ></Button>
       <ul className="flex gap-5 items-center dark:text-slate-100">
         <li>{prevPage(page)}</li>
         <li className="font-extrabold text-xl">{page}</li>
         <li>{nextPage(page, totalPageCount)}</li>
       </ul>
-      <button
-        className="bg-white px-6 py-2 rounded-xl"
+      <Button
         onClick={handlePageChangeNext}
         disabled={!totalPageCount || page === totalPageCount}
+        buttonText="Next"
+        ariaLabel="Move to next page"
       >
         Next
-      </button>
+      </Button>
     </div>
   )
 }

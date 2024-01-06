@@ -39,7 +39,12 @@ export const User = ({ user, homeworldUrls }) => {
         <li className="flex justify-center p-4">{formattedCreatedDate}</li>
         <li className="flex justify-center p-4">{formattedEditedDate}</li>
         <li className="flex justify-center p-4">
-          <Button buttonText={userHomeworld} onClick={handlePlanetClick} />
+          <Button
+            buttonText={userHomeworld}
+            onClick={handlePlanetClick}
+            disabled={!userHomeworld}
+            ariaLabel="View planet details"
+          />
         </li>
       </ul>
 

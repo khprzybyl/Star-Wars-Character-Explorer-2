@@ -6,16 +6,15 @@ export const UserList = () => {
   const { isPending, error, data: peopleData } = usePeopleQuery()
 
   const homeworldUrls = [
-    ...new Set(peopleData?.results.map((user) => user.homeworld)),
+    ...new Set(peopleData?.people.map((user) => user.homeworld)),
   ]
 
   if (isPending) return <UserSkeletonLoader />
 
   if (error) return 'An error has occurred: ' + error.message
-
   return (
     <div className="rounded-b-2xl flex flex-col gap-1 ">
-      {peopleData?.results.map((user) => {
+      {peopleData?.people.map((user) => {
         return (
           <div
             key={user.name}
