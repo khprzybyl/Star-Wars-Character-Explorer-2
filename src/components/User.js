@@ -1,6 +1,7 @@
 import React from 'react'
 import { formatDate } from '../utils/formatDate.js'
 import { usePlanetsQuery } from '../hooks/usePlanetsQuery.js'
+import { Button } from './Button.js'
 
 export const User = ({ user, homeworldUrls }) => {
   const { data: planetsData, isPending } = usePlanetsQuery(homeworldUrls)
@@ -23,7 +24,9 @@ export const User = ({ user, homeworldUrls }) => {
       <li className="flex justify-center items-center p-4">
         {formattedEditedDate}
       </li>
-      <li className="flex justify-center items-center p-4">{userHomeworld}</li>
+      <li className="flex justify-center items-center p-4">
+        <Button buttonText={userHomeworld} />
+      </li>
     </ul>
   )
 }
